@@ -225,6 +225,90 @@
       color: rgba(255,255,255,0.6);
     }
 
+    /* ── Team strip ───────────────────────────────────────── */
+    .team-strip {
+      padding: 96px 48px;
+      background: var(--white);
+    }
+    .team-strip-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .team-strip-header {
+      margin-bottom: 56px;
+    }
+    .team-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .team-card {
+      padding: 32px 24px;
+      border-top: 3px solid var(--rule);
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+    }
+    .team-card-credential {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--magenta);
+      margin-bottom: 16px;
+    }
+    .team-card-name {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .team-card-title {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 16px;
+    }
+    .team-card-desc {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--ink-mid);
+      flex: 1;
+    }
+    .team-card-link {
+      margin-top: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--magenta);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .team-card-link svg {
+      width: 12px;
+      height: 12px;
+      stroke: var(--magenta);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    @media (max-width: 900px) {
+      .team-strip { padding: 64px 24px; }
+      .team-cards { grid-template-columns: 1fr 1fr; gap: 12px; }
+    }
+    @media (max-width: 600px) {
+      .team-cards { grid-template-columns: 1fr; }
+    }
+
     /* ── Services strip ───────────────────────────────────── */
     .services-strip { padding: 96px 48px; background: var(--cream); }
     .services-strip-inner { max-width: 1100px; margin: 0 auto; }
@@ -603,6 +687,52 @@
     </div>
   </section>
 
+  <!-- ── Team Strip ─────────────────────────────────────────── -->
+  <section class="team-strip">
+    <div class="team-strip-inner">
+      <div class="team-strip-header">
+        <p class="section-label">Who We Are</p>
+        <div class="rule"></div>
+        <h2 class="section-heading">The people you work with</h2>
+      </div>
+      <div class="team-cards">
+
+        <div class="team-card">
+          <div class="team-card-credential">IIM Ahmedabad</div>
+          <div class="team-card-name">Unnikrishnan B</div>
+          <div class="team-card-title">Managing Director</div>
+          <p class="team-card-desc">Over 40 years of leadership across manufacturing, construction, real estate, infrastructure, and logistics. Has taken on organisations in difficulty and rebuilt them.</p>
+          <a href="about.html#unnikrishnan" class="team-card-link">Full profile <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="team-card">
+          <div class="team-card-credential">Chartered Accountant · 40+ years</div>
+          <div class="team-card-name">Joseph Thomas</div>
+          <div class="team-card-title">Director, Finance &amp; Strategic Planning</div>
+          <p class="team-card-desc">Specialising in financial systems, internal controls, and compliance frameworks that give businesses an accurate picture of where they stand.</p>
+          <a href="about.html#joseph" class="team-card-link">Full profile <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="team-card">
+          <div class="team-card-credential">IIM Bangalore</div>
+          <div class="team-card-name">Somanathan Kaimal</div>
+          <div class="team-card-title">Director, Digital Transformation</div>
+          <p class="team-card-desc">Over 25 years in technology and product management. Helps businesses make sound decisions about technology before they commit time and money to it.</p>
+          <a href="about.html#somanathan" class="team-card-link">Full profile <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+        <div class="team-card">
+          <div class="team-card-credential">NIT Calicut · IIM Calcutta</div>
+          <div class="team-card-name">Haritha Unnikrishnan</div>
+          <div class="team-card-title">Director, Client Advisory</div>
+          <p class="team-card-desc">Works directly with clients and their teams to understand how the business operates, identifies where the problems are, and implements solutions.</p>
+          <a href="about.html#haritha" class="team-card-link">Full profile <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  
   <!-- ── Services Strip ─────────────────────────────────────── -->
   <section class="services-strip">
     <div class="services-strip-inner">
