@@ -52,10 +52,10 @@
       margin-bottom: 28px;
     }
     .hero-mark {
-      width: 80px;
-      min-width: 80px;
+      width: 120px;
+      min-width: 120px;
       height: auto;
-      margin-top: 6px;
+      margin-top: 0;
     }
     .hero-heading {
       font-family: var(--font-display);
@@ -103,8 +103,8 @@
     }
     .hero-stat:first-child  { border-top: 3px solid var(--magenta); }
     .hero-stat:nth-child(2) { border-top: 3px solid var(--violet); }
-    .hero-stat:nth-child(3) { border-top: 3px solid var(--ink); }
-    .hero-stat:nth-child(4) { border-top: 3px solid var(--green); }
+    .hero-stat:nth-child(3) { border-top: 3px solid var(--green); }
+    .hero-stat:nth-child(4) { border-top: 3px solid var(--ink); }
 
     /* ── Problems ─────────────────────────────────────────── */
     .problems {
@@ -151,7 +151,8 @@
       font-family: var(--font-display);
       font-size: 20px;
       font-style: italic;
-      color: var(--ink-mid);
+      font-weight: 600;
+      color: var(--ink);
       text-align: center;
       padding-top: 8px;
     }
@@ -243,10 +244,21 @@
       color: var(--ink); margin-bottom: 10px; line-height: 1.35;
     }
     .svc-card-desc {
-      font-size: 13px; line-height: 1.7; color: var(--ink-mid);
-      display: -webkit-box; -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical; overflow: hidden;
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--ink-mid);
+      max-height: calc(1.7em * 4);
+      overflow: hidden;
+      position: relative;
       flex: 1;
+    }
+    .svc-card-desc::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2em;
+      background: linear-gradient(to bottom, transparent, var(--white));
+      pointer-events: none;
     }
     .svc-card-readmore {
       margin-top: 16px;
@@ -368,7 +380,7 @@
     @media (max-width: 900px) {
       .hero { padding: 64px 24px 56px; }
       .hero-inner { grid-template-columns: 1fr; gap: 48px; }
-      .hero-mark { width: 60px; min-width: 60px; }
+      .hero-mark { width: 80px; min-width: 80px; }
       .problems { padding: 64px 24px; }
       .problems-grid { grid-template-columns: 1fr; }
       .why { padding: 64px 24px; }
@@ -446,7 +458,7 @@
         </div>
         <div class="hero-stat">
           <div class="hero-stat-number">3</div>
-          <div class="hero-stat-label">Directors with IIM and NIT Calicut credentials</div>
+          <div class="hero-stat-label">Directors with IIM and NIT credentials</div>
         </div>
         <div class="hero-stat">
           <div class="hero-stat-number">CA</div>
@@ -624,7 +636,7 @@
         <div class="svc-card-expanded" id="expandedPanel"></div>
 
         <!-- Bottom row (shown when a card is expanded) -->
-        <div class="svc-card-row three-up" id="bottomRow" style="display:none;"></div>
+        <div class="svc-card-row" id="bottomRow" style="display:none;"></div>
       </div>
     </div>
   </section>
@@ -797,7 +809,10 @@
           Close
         </button>
       </div>
-      <div class="svc-exp-right">${itemsHTML}</div>`;
+      <div class="svc-exp-right">
+        <div style="font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-light);margin-bottom:20px;">This includes</div>
+        ${itemsHTML}
+      </div>`;
   }
 
   function expandCard(id) {
@@ -812,21 +827,28 @@
     // Mark active
     cardOrder.forEach(c => document.getElementById('card-' + c).classList.toggle('active', c === id));
 
-    // Show only active card in top row as full width
+    // Remove ALL cards from topRow, leave it empty
     topRow.style.gridTemplateColumns = '1fr';
     cardOrder.forEach(c => {
-      document.getElementById('card-' + c).style.display = c === id ? 'flex' : 'none';
+      document.getElementById('card-' + c).style.display = 'none';
     });
 
-    // Build and show expanded panel
+    // Build and show expanded panel (full width)
     expandedPanel.innerHTML = buildExpandedHTML(id);
     expandedPanel.classList.add('visible');
 
-    // Build bottom row with the other 3
+    // Build bottom row with the other 3 (including a clone of active collapsed)
     bottomRow.innerHTML = '';
+    // Active card goes first in bottom row
+    const activeClone = document.getElementById('card-' + id).cloneNode(true);
+    activeClone.id = 'clone-' + id;
+    activeClone.style.display = 'flex';
+    activeClone.classList.remove('active');
+    activeClone.querySelector('.svc-card-readmore').setAttribute('onclick', `expandCard('${id}')`);
+    bottomRow.appendChild(activeClone);
+    // Then the other 3
     others.forEach(c => {
-      const original = document.getElementById('card-' + c);
-      const clone = original.cloneNode(true);
+      const clone = document.getElementById('card-' + c).cloneNode(true);
       clone.id = 'clone-' + c;
       clone.style.display = 'flex';
       clone.querySelector('.svc-card-readmore').setAttribute('onclick', `expandCard('${c}')`);
