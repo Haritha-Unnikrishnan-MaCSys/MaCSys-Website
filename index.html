@@ -50,13 +50,13 @@
     }
     .hero-headline-top {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 24px;
       margin-bottom: 8px;
     }
     .hero-mark {
-      width: 110px;
-      min-width: 110px;
+      width: 160px;
+      min-width: 160px;
       height: auto;
     }
     .hero-heading-partial {
@@ -850,29 +850,21 @@
     cardOrder.forEach(c => document.getElementById('card-' + c).classList.toggle('active', c === id));
 
     // Remove ALL cards from topRow, leave it empty
-    topRow.style.gridTemplateColumns = '1fr';
-    cardOrder.forEach(c => {
-      document.getElementById('card-' + c).style.display = 'none';
-    });
+    topRow.style.display = 'none';
 
     // Build and show expanded panel (full width)
     expandedPanel.innerHTML = buildExpandedHTML(id);
     expandedPanel.classList.add('visible');
 
-    // Build bottom row with the other 3 (including a clone of active collapsed)
+    // Build bottom row with all 4 cards in original order
     bottomRow.innerHTML = '';
-    // Active card goes first in bottom row
-    const activeClone = document.getElementById('card-' + id).cloneNode(true);
-    activeClone.id = 'clone-' + id;
-    activeClone.style.display = 'flex';
-    activeClone.classList.add('active');
-    activeClone.querySelector('.svc-card-readmore').setAttribute('onclick', `expandCard('${id}')`);
-    bottomRow.appendChild(activeClone);
-    // Then the other 3
-    others.forEach(c => {
+    cardOrder.forEach(c => {
       const clone = document.getElementById('card-' + c).cloneNode(true);
       clone.id = 'clone-' + c;
       clone.style.display = 'flex';
+      if (c === id) {
+        clone.classList.add('active');
+      }
       clone.querySelector('.svc-card-readmore').setAttribute('onclick', `expandCard('${c}')`);
       bottomRow.appendChild(clone);
     });
@@ -887,11 +879,9 @@
     const expandedPanel = document.getElementById('expandedPanel');
     const bottomRow = document.getElementById('bottomRow');
 
-    topRow.style.gridTemplateColumns = '';
+    topRow.style.display = 'grid';
     cardOrder.forEach(c => {
-      const el = document.getElementById('card-' + c);
-      el.style.display = 'flex';
-      el.classList.remove('active');
+      document.getElementById('card-' + c).classList.remove('active');
     });
 
     expandedPanel.classList.remove('visible');
