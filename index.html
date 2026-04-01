@@ -46,16 +46,34 @@
       margin-bottom: 20px;
     }
     .hero-headline-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 24px;
       margin-bottom: 28px;
     }
+    .hero-headline-top {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 8px;
+    }
     .hero-mark {
-      width: 120px;
-      min-width: 120px;
+      width: 110px;
+      min-width: 110px;
       height: auto;
-      margin-top: 0;
+    }
+    .hero-heading-partial {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4.5vw, 60px);
+      font-weight: 500;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+    .hero-heading-em {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4.5vw, 60px);
+      font-weight: 500;
+      font-style: italic;
+      line-height: 1.1;
+      color: var(--magenta);
+      display: block;
     }
     .hero-heading {
       font-family: var(--font-display);
@@ -231,7 +249,7 @@
       transition: border-color 0.2s, transform 0.15s;
     }
     .svc-card:hover { border-color: var(--magenta); transform: translateY(-3px); }
-    .svc-card.active { border-color: var(--magenta); transform: none; }
+    .svc-card.active { border-color: var(--magenta); transform: none; background: var(--cream); }
 
     .svc-card-icon { width: 36px; height: 36px; margin-bottom: 16px; }
     .svc-card-icon svg {
@@ -381,6 +399,7 @@
       .hero { padding: 64px 24px 56px; }
       .hero-inner { grid-template-columns: 1fr; gap: 48px; }
       .hero-mark { width: 80px; min-width: 80px; }
+      .hero-heading-em { font-size: clamp(28px, 6vw, 48px); }
       .problems { padding: 64px 24px; }
       .problems-grid { grid-template-columns: 1fr; }
       .why { padding: 64px 24px; }
@@ -442,8 +461,11 @@
       <div class="hero-left">
         <p class="hero-label">Management Consultancy · Kochi, India</p>
         <div class="hero-headline-row">
-          <img src="/assets/logos/Mark%20Only_Transparent%20Background.svg" alt="MaCSys" class="hero-mark" />
-          <h1 class="hero-heading">Is your business <em>getting hard to manage?</em></h1>
+          <div class="hero-headline-top">
+            <img src="/assets/logos/Mark%20Only_Transparent%20Background.svg" alt="MaCSys" class="hero-mark" />
+            <span class="hero-heading-partial">Is your business</span>
+          </div>
+          <em class="hero-heading-em">getting hard to manage?</em>
         </div>
         <p class="hero-body">Every business has an objective. As the business grows, that objective can get sidelined and management gets harder. The right systems make it feel manageable again.</p>
         <div class="hero-actions">
@@ -632,11 +654,11 @@
           </div>
         </div>
 
-        <!-- Expanded panel -->
-        <div class="svc-card-expanded" id="expandedPanel"></div>
-
         <!-- Bottom row (shown when a card is expanded) -->
         <div class="svc-card-row" id="bottomRow" style="display:none;"></div>
+
+        <!-- Expanded panel -->
+        <div class="svc-card-expanded" id="expandedPanel"></div>
       </div>
     </div>
   </section>
@@ -843,7 +865,7 @@
     const activeClone = document.getElementById('card-' + id).cloneNode(true);
     activeClone.id = 'clone-' + id;
     activeClone.style.display = 'flex';
-    activeClone.classList.remove('active');
+    activeClone.classList.add('active');
     activeClone.querySelector('.svc-card-readmore').setAttribute('onclick', `expandCard('${id}')`);
     bottomRow.appendChild(activeClone);
     // Then the other 3
