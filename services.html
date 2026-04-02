@@ -180,6 +180,110 @@
     }
     .cta-band-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
+    /* ── Hero link ────────────────────────────────────────── */
+    .hero-link {
+      color: var(--magenta);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .hero-link:hover { border-bottom-color: var(--magenta); }
+
+    /* ── Service card list (new layout) ───────────────────── */
+    .svc-items {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .svc-item {
+      background: var(--white);
+      border-left: 3px solid var(--magenta);
+      overflow: hidden;
+    }
+    .svc-item-toggle {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 28px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      text-align: left;
+      transition: background 0.15s;
+    }
+    .svc-item-toggle:hover { background: var(--cream); }
+    .svc-item.open .svc-item-toggle { background: var(--cream); }
+    .svc-item-name {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+    .svc-item-summary {
+      font-size: 13px;
+      color: var(--ink-light);
+      font-weight: 400;
+      line-height: 1.55;
+    }
+    .svc-item-toggle-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--magenta);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding-top: 3px;
+      flex-shrink: 0;
+    }
+    .svc-item-chevron {
+      width: 14px;
+      height: 14px;
+      min-width: 14px;
+      stroke: var(--magenta);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform 0.2s;
+    }
+    .svc-item.open .svc-item-chevron { transform: rotate(180deg); }
+    .svc-item-body {
+      display: none;
+      padding: 0 28px 24px;
+      border-top: 1px solid var(--rule);
+      margin: 0 28px;
+    }
+    .svc-item.open .svc-item-body { display: block; }
+    .svc-item-desc {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--ink-mid);
+      margin-top: 20px;
+      margin-bottom: 16px;
+    }
+    .svc-also-covers {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--ink-light);
+      padding: 14px 18px;
+      background: rgba(0,0,0,0.03);
+      border-left: 2px solid var(--rule);
+    }
+    .svc-also-covers strong {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 5px;
+    }
+
     /* ── Responsive ───────────────────────────────────────── */
     @media (max-width: 900px) {
       .page-hero { padding: 56px 24px 48px; }
@@ -197,8 +301,11 @@
 <!-- ── Navigation ──────────────────────────────────────────── -->
 <nav class="nav">
   <a class="nav-logo" href="index.html">
-    <span class="nav-logo-mark">MaCSys</span>
-    <span class="nav-logo-sub">Solutions Limited</span>
+    <img src="/assets/logos/Mark%20Only_Transparent%20Background.svg" alt="MaCSys" class="nav-logo-img" />
+    <div class="nav-logo-text">
+      <span class="nav-logo-mark">MaCSys</span>
+      <span class="nav-logo-sub">Solutions Limited</span>
+    </div>
   </a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
@@ -226,9 +333,9 @@
     <div class="page-hero-inner">
       <div>
         <p class="section-label">Our Services</p>
-        <h1 class="page-hero-heading">Where we work with businesses</h1>
+        <h1 class="page-hero-heading">How we can help you</h1>
       </div>
-      <p class="page-hero-body">Every business is different. The services listed here reflect the most common areas where we work, but most engagements involve more than one. If you are not sure where your situation fits, start with a conversation.</p>
+      <p class="page-hero-body">Every business is different. The services listed here reflect the most common areas where we work, but most engagements involve more than one. If you are not sure where your situation fits, <a href="contact.html" class="hero-link">start with a conversation</a>.</p>
     </div>
   </section>
 
@@ -250,7 +357,7 @@
               <div class="svc-item-name">Strategic Management &amp; Operations</div>
               <div class="svc-item-summary">Top management is handling too much and doesn't always have the full picture</div>
             </div>
-            <svg class="svc-item-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="svc-item-toggle-label"><span class="svc-item-toggle-text">More</span><svg class="svc-item-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
           </button>
           <div class="svc-item-body">
             <p class="svc-item-desc">The business is doing well but top management is handling too much and does not always have the full picture to decide what to do next. We review how the business is organised and run today, the market it operates in, and the opportunities and challenges it is facing. Based on this, we put together recommendations for what needs to be changed and the right move going forward.</p>
@@ -264,7 +371,7 @@
               <div class="svc-item-name">Systems, Processes &amp; MIS</div>
               <div class="svc-item-summary">Everyone is doing things their own way with no standard system or reliable reporting</div>
             </div>
-            <svg class="svc-item-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="svc-item-toggle-label"><span class="svc-item-toggle-text">More</span><svg class="svc-item-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
           </button>
           <div class="svc-item-body">
             <p class="svc-item-desc">The business is running but everyone is doing things their own way. There is no standard system that everyone involved in a process can follow and see what is happening and where things stand. There is no reliable report for leadership to take the right decision at the right time.</p>
@@ -279,7 +386,7 @@
               <div class="svc-item-name">Human Resource &amp; Organisational Development</div>
               <div class="svc-item-summary">The business is ready to grow but the team and organisation may not be set up to support it</div>
             </div>
-            <svg class="svc-item-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="svc-item-toggle-label"><span class="svc-item-toggle-text">More</span><svg class="svc-item-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
           </button>
           <div class="svc-item-body">
             <p class="svc-item-desc">The business is ready to grow but it is not clear if the team and the organisation are set up to support that. Many businesses reach this point without formal HR policies or a clear organisational structure in place. Staff are not always clear on what their role is or what is expected of them.</p>
@@ -294,7 +401,7 @@
               <div class="svc-item-name">Supply Chain &amp; Procurement</div>
               <div class="svc-item-summary">Not clear if current vendors and operations can support expansion</div>
             </div>
-            <svg class="svc-item-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="svc-item-toggle-label"><span class="svc-item-toggle-text">More</span><svg class="svc-item-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
           </button>
           <div class="svc-item-body">
             <p class="svc-item-desc">The business is looking to expand but it is not clear whether the current vendors and operations can support that, or what the right setup looks like in a new location. Before deciding where to expand, you need to know if your vendors can support you there and what it will cost to operate from that location.</p>
@@ -315,7 +422,7 @@
           <div class="svc-cat-label">02</div>
           <div class="svc-cat-title">Digital Transformation</div>
         </div>
-        <p class="svc-cat-intro">Most businesses run on manual processes and verbal approvals. Digital tools fix this. The right documents reach the right people at the right time and approvals can be given from anywhere. Decisions and actions cannot be taken without the right authorisation in place. Every decision is recorded and traceable. Issues are flagged before they become a problem.</p>
+        <p class="svc-cat-intro">Identifying where technology can reduce manual work and cost, and putting the right tools in place so your business can use them. The goal is faster, better informed decisions with less dependence on manual processes.</p>
       </div>
       <div class="svc-items">
         <div class="svc-item">
@@ -324,11 +431,11 @@
               <div class="svc-item-name">Digital Transformation &amp; AI Adoption</div>
               <div class="svc-item-summary">Manual processes causing delays, missing approvals, and no record of what was agreed</div>
             </div>
-            <svg class="svc-item-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="svc-item-toggle-label"><span class="svc-item-toggle-text">More</span><svg class="svc-item-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
           </button>
           <div class="svc-item-body">
             <p class="svc-item-desc">Most businesses run on manual processes and verbal approvals. A purchase order gets raised without the right approval. A decision gets delayed because the right person is not available. There is no record of what was agreed or who approved what.</p>
-            <p class="svc-item-desc">Digital processes fix this. The right documents reach the right people at the right time and approvals can be given from anywhere. Decisions and actions cannot be taken without the right authorisation in place. Every decision is recorded and traceable. Issues are flagged before they become a problem.</p>
+            <p class="svc-item-desc">Digital processes fix this. The right documents reach the right people at the right time. Approvals can be given from anywhere. Every decision is recorded and traceable. Issues are flagged before they become a problem.</p>
             <p class="svc-item-desc">We map how the business is currently operating, identify where manual processes are causing delays or creating gaps in accountability, and implement the right digital tools and workflows. We also look at where AI can add practical value, for example in forecasting how much stock or raw material the business will need, or in flagging unusual patterns in expenses before they become a larger issue.</p>
             <div class="svc-also-covers"><strong>Also covers</strong>Process automation, digital workflow implementation, technology assessment and roadmap, MIS reports.</div>
           </div>
@@ -355,7 +462,7 @@
               <div class="svc-item-name">Project &amp; Infrastructure Management</div>
               <div class="svc-item-summary">Projects delayed, costs over budget, or disputes with contractors becoming difficult to manage</div>
             </div>
-            <svg class="svc-item-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="svc-item-toggle-label"><span class="svc-item-toggle-text">More</span><svg class="svc-item-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
           </button>
           <div class="svc-item-body">
             <p class="svc-item-desc">Many businesses find that their projects rarely finish on time or within budget. What starts as a small delay becomes a larger problem. Disputes that could have been avoided become expensive and drawn out.</p>
@@ -371,7 +478,7 @@
               <div class="svc-item-name">Business Setup &amp; Structuring</div>
               <div class="svc-item-summary">Ready to expand but not clear where, when, or how to do it properly</div>
             </div>
-            <svg class="svc-item-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="svc-item-toggle-label"><span class="svc-item-toggle-text">More</span><svg class="svc-item-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
           </button>
           <div class="svc-item-body">
             <p class="svc-item-desc">Some businesses know they are ready to grow but are not sure what the right move is. Others have already decided where they want to go but need help making it happen properly. We work with the business to evaluate whether expansion makes sense, what the right direction is, and what it will take to execute it.</p>
@@ -386,7 +493,7 @@
               <div class="svc-item-name">Restructuring of Existing Business</div>
               <div class="svc-item-summary">Problems keep surfacing and it is hard to identify the root cause</div>
             </div>
-            <svg class="svc-item-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="svc-item-toggle-label"><span class="svc-item-toggle-text">More</span><svg class="svc-item-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
           </button>
           <div class="svc-item-body">
             <p class="svc-item-desc">A portion of units are coming out with quality issues. Costs are going up but output is staying the same. Deliveries are getting delayed but the capacity seems to be there. These are the kinds of problems where the symptom is visible but the cause is not. It could be the production process, the way the business is organised, how goods are handled and transported, or something else.</p>
@@ -417,7 +524,7 @@
               <div class="svc-item-name">Financial Management &amp; Cost Control</div>
               <div class="svc-item-summary">Funds coming in but always running short — no clear picture of where the money is going</div>
             </div>
-            <svg class="svc-item-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="svc-item-toggle-label"><span class="svc-item-toggle-text">More</span><svg class="svc-item-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
           </button>
           <div class="svc-item-body">
             <p class="svc-item-desc">Turnover is growing but there is never enough money when it is needed. Most businesses track what is coming in but not what it actually costs to run the business. Costs are not tracked product by product or location by location. There is no clear picture of where the money is going or whether each part of the business is making money.</p>
@@ -432,7 +539,7 @@
               <div class="svc-item-name">Audit, Compliance &amp; Governance</div>
               <div class="svc-item-summary">Something has gone wrong, or the business wants an independent check before something does</div>
             </div>
-            <svg class="svc-item-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="svc-item-toggle-label"><span class="svc-item-toggle-text">More</span><svg class="svc-item-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
           </button>
           <div class="svc-item-body">
             <p class="svc-item-desc">GST returns filed late or TDS not deducted for certain contractors. Products sold below cost without realising the effect. Funds that were not accounted for. Approvals granted and actions taken without following company procedure. These are common problems that occur when the right checks are not in place.</p>
@@ -447,7 +554,7 @@
               <div class="svc-item-name">Accounting Process</div>
               <div class="svc-item-summary">No formal accounting processes — bills approved by the wrong people, entries without the right checks</div>
             </div>
-            <svg class="svc-item-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="svc-item-toggle-label"><span class="svc-item-toggle-text">More</span><svg class="svc-item-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
           </button>
           <div class="svc-item-body">
             <p class="svc-item-desc">Bills are approved by the wrong people. There are no clear limits on what can be approved and by whom. Entries are made into the books without the right checks. Each office or branch is maintaining accounts differently. When something goes wrong it is hard to trace where it started.</p>
@@ -474,7 +581,7 @@
     <div class="footer-inner">
       <div>
         <div class="footer-brand-name">MaCSys Solutions Limited</div>
-        <p class="footer-brand-tagline">Public Limited Company incorporated under the Companies Act</p>
+        <p class="footer-brand-tagline">CIN: [YOUR-CIN-HERE] | Public Limited Company incorporated under the Companies Act, 2013</p>
       </div>
       <div>
         <div class="footer-col-title">Pages</div>
@@ -488,11 +595,13 @@
       <div>
         <div class="footer-col-title">Contact</div>
         <div class="footer-contact-item"><span>Address</span>Aravindakshan Road, Vasanth Nagar, Kochi – 25, Kerala</div>
-        <div class="footer-contact-item"><span>Phone</span>+91 89211 38343</div>
+        <div class="footer-contact-item"><span>Phone</span><a href="tel:+918921138343" style="color:inherit;">+91 89211 38343</a></div>
+        <div class="footer-contact-item"><span>WhatsApp</span><a href="https://wa.me/918921138343?text=Hello%2C%20I%20would%20like%20to%20discuss%20my%20business%20situation%20with%20MaCSys.%20My%20name%20is%20%5BName%5D%20and%20I%20can%20be%20reached%20at%20%5Bcontact%20details%5D." style="color:inherit;">+91 89211 38343</a></div>
+        <div class="footer-contact-item"><span>Email</span><a href="mailto:info@macsyssolutions.com" style="color:inherit;">info@macsyssolutions.com</a></div>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2025 MaCSys Solutions Limited. All rights reserved.</span>
+      <span>© <span id="footer-year"></span> MaCSys Solutions Limited. All rights reserved.</span>
       <span>Kochi, Kerala, India</span>
     </div>
   </footer>
@@ -506,7 +615,10 @@
   function toggleService(btn) {
     const item = btn.closest('.svc-item');
     item.classList.toggle('open');
+    const label = btn.querySelector('.svc-item-toggle-text');
+    if (label) label.textContent = item.classList.contains('open') ? 'Less' : 'More';
   }
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
