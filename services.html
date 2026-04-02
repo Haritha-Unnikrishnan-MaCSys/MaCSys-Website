@@ -198,6 +198,7 @@
     .svc-item {
       background: var(--white);
       border: 1px solid var(--rule);
+      border-left: 5px solid transparent;
       overflow: hidden;
     }
     .svc-item-toggle {
@@ -206,16 +207,16 @@
       align-items: flex-start;
       justify-content: space-between;
       gap: 24px;
-      padding: 22px 28px 22px 25px;
+      padding: 22px 28px;
       cursor: pointer;
       background: none;
       border: none;
-      border-left: 3px solid transparent;
       text-align: left;
-      transition: background 0.15s, border-color 0.15s;
+      transition: background 0.15s;
     }
-    .svc-item-toggle:hover { background: var(--cream); border-left-color: var(--magenta); }
-    .svc-item.open .svc-item-toggle { border-left-color: var(--magenta); }
+    .svc-item-toggle:hover { background: var(--cream); }
+    .svc-item.open .svc-item-toggle { background: #FDF0F5; }
+    .svc-item.open { border-left-color: var(--magenta); }
     .svc-item-name {
       font-size: 16px;
       font-weight: 500;
@@ -258,6 +259,7 @@
       display: none;
       padding: 0 28px 24px;
       border-top: 1px solid var(--rule);
+      background: var(--white);
     }
     .svc-item.open .svc-item-body { display: block; }
     .svc-item-desc {
