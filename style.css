@@ -288,9 +288,9 @@ hr.divider {
   .nav-links, .nav-cta { display: none; }
   .nav-hamburger { display: flex; }
 
-  .hero-stat-grid { grid-template-columns: 1fr 1fr; }
-  .hero-stat { padding: 24px 20px; }
-  .hero-stat-number { font-size: 32px; }
+  .hero-stat-grid { grid-template-columns: 1fr 1fr; overflow: hidden; }
+  .hero-stat { padding: 20px 16px; }
+  .hero-stat-number { font-size: 26px; }
 
   .section { padding: 64px 24px; }
   hr.divider { margin: 0 24px; }
