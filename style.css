@@ -288,6 +288,10 @@ hr.divider {
   .nav-links, .nav-cta { display: none; }
   .nav-hamburger { display: flex; }
 
+  .hero-stat-grid { grid-template-columns: 1fr 1fr; }
+  .hero-stat { padding: 24px 20px; }
+  .hero-stat-number { font-size: 32px; }
+
   .section { padding: 64px 24px; }
   hr.divider { margin: 0 24px; }
 
@@ -331,4 +335,5 @@ hr.divider {
   margin-top: 24px;
   text-align: center;
   font-size: 14px;
+  color: var(--white);
 }
