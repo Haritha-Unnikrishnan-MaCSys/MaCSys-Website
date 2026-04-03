@@ -288,9 +288,9 @@ hr.divider {
   .nav-links, .nav-cta { display: none; }
   .nav-hamburger { display: flex; }
 
-  .hero-stat-grid { grid-template-columns: 1fr 1fr; overflow: hidden; }
-  .hero-stat { padding: 20px 16px; }
-  .hero-stat-number { font-size: 26px; }
+  .hero-stat-grid { grid-template-columns: 1fr 1fr; max-width: 100%; }
+  .hero-stat { padding: 20px 16px; min-width: 0; }
+  .hero-stat-number { font-size: 22px; word-break: break-word; }
 
   .section { padding: 64px 24px; }
   hr.divider { margin: 0 24px; }
@@ -339,6 +339,5 @@ hr.divider {
 }
 
 @media (max-width: 480px) {
-  .hero-stat-number { font-size: 20px; }
-  .hero-stat { padding: 16px 12px; }
+  .hero-stat-grid { grid-template-columns: 1fr; }
 }
