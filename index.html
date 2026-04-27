@@ -253,10 +253,14 @@
     }
     .team-card {
       padding: 32px 24px;
-      border-top: 3px solid var(--magenta);
-      background: var(--white);
+      border-top: 3px solid var(--rule);
+      background: var(--cream);
       display: flex;
       flex-direction: column;
+      transition: border-color 0.2s;
+    }
+    .team-card:hover {
+      border-top-color: var(--magenta);
     }
     .team-card-credential {
       font-size: 11px;
